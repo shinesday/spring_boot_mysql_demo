@@ -7,6 +7,7 @@ import com.example.students_management.exceptions.StudentNonExistException;
 import com.example.students_management.model.Student;
 import com.example.students_management.service.StudentService;
 import java.util.List;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,7 @@ public class StudentController {
   }
 
   @GetMapping
+  @RequiresPermissions("student:read")
   public List<Student> getAllStudents() {
     return studentService.getAllStudents();
   }
